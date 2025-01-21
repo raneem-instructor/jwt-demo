@@ -9,6 +9,10 @@ const SECRET_KEY = process.env.SECRET_KEY; // Retrieve the secret key from the .
 
 app.use(bodyParser.json());
 
+// Health Check Route
+app.get('/', (req,res) => {
+    res.status(200).send({ message: 'ok'})
+}),
 // Route to login and generate a JWT
 app.post('/login', (req, res) => {
     const { username, role } = req.body; // Accept username and role from the request body
@@ -52,7 +56,7 @@ app.get('/admin', (req, res) => {
             return res.status(403).json({ message: 'Invalid token!' });
         }
 
-        if (decoded.role !== 'ADMIN') {
+        if (decoded.role !== 'admin') {
             return res.status(403).json({ message: 'Access denied. Admins only!' });
         }
 
