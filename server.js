@@ -1,9 +1,11 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+require('dotenv').config(); // Load environment variables
+
 
 const app = express();
-const SECRET_KEY = 'mysecretkey';
+const SECRET_KEY = process.env.SECRET_KEY; // Retrieve the secret key from the .env file
 
 app.use(bodyParser.json());
 
